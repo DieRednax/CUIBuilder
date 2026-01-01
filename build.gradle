@@ -19,10 +19,17 @@ test {
     useJUnitPlatform()
 }
 
-application {
-    mainClass = 'com.redfox.cuibuilder.Test'
-}
+//application {
+//    mainClass = 'com.redfox.cuibuilder.Test'
+//}
+//
+//run {
+//    standardInput = System.in
+//}
 
-run {
-    standardInput = System.in
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
